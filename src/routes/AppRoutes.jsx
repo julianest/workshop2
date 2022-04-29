@@ -1,22 +1,33 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-// import React, { useContext } from 'react';
-// import { AppContext } from '../hooks/AppContext';
 import Home from '../components/Home';
 import Checkout from '../components/Checkout';
 import Nabvar from '../components/Navbar';
+import { useState, useEffect } from 'react';
+import Constants from '../helpers/Constants';
+import {getData} from "../helpers/ApiConsume";
+import { AppContext } from '../hooks/AppContext';
+
+
 
 
 function AppRoutes() {
 
+  const [products, setProducts] = useState([]);
   // const {product, setProduct}=useContext(AppContext)
-  // const isEmpty = Object.keys(product).length;
+  
+
+  useEffect(() => {
+    async function obtenerDatos(){
+      const response = await getData(Constants.urlAPI);
+      setProducts(response.data);
+    }
+    obtenerDatos();
+  }, [setProducts])
 
   return (
       <>
         <div className='container'>
-            {/* {isEmpty>0 ? (
-            <AppContext.Provider value={{product, setProduct}}> */}
-              
+            <AppContext.Provider value={{products, setProducts}}>
                 <BrowserRouter>
                 <Nabvar/>
                     <Routes>
@@ -25,11 +36,7 @@ function AppRoutes() {
                     <Route path='/*' element={<Navigate to="/" />} />
                   </Routes>
                 </BrowserRouter>  
-              {/* </AppContext.Provider>) 
-              : <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-              } */}
+              </AppContext.Provider>
         </div>
       </>
   );
