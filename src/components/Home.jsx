@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () =>{
 
-const {products, setProducts}= useContext(AppContext);
+const {products}= useContext(AppContext);
 
 const discountshow = (artPrice, porcentDiscount)=>{
     const saldo = (artPrice - ((artPrice * porcentDiscount)/100)).toFixed(2); 
@@ -22,8 +22,8 @@ console.log(products)
                 <img src={products.img} className="card-img-top" alt={products.name}/>
                 <div className="card-body">
                   <h5 className="card-title">{products.name}</h5>
-                  <span className="card-text">{discountshow(products.price, porcentDisc)}</span> /
-                  <span className="card-text">{products.price}</span>
+                  <span className="card-text">{discountshow(products.price, porcentDisc)}/kg</span> /
+                  <span className="card-text">{products.price}/kg</span>
                   <Link to="#" className="btn btn-primary">Agregar</Link>
                 </div>
               </div>
