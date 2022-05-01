@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import Constants from '../helpers/Constants';
 import {getData} from "../helpers/ApiConsume";
 import { AppContext } from '../hooks/AppContext';
-
+import Product from "../components/Product";
 
 
 
@@ -33,6 +33,7 @@ function AppRoutes() {
                     <Routes>
                     <Route path='/' element={<Home/>} />  
                     <Route path='/checkout' element={<Checkout/>} />
+                    <Route path='/product' element={<Product/>} />
                     <Route path='/*' element={<Navigate to="/" />} />
                   </Routes>
                 </BrowserRouter>  
