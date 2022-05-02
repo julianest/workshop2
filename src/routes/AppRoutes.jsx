@@ -31,11 +31,11 @@ function AppRoutes() {
                 <BrowserRouter>
                 <Nabvar/>
                     <Routes>
-                    <Route path='/' element={<Home/>} />  
+                    <Route path='/' element={<Home/>} />
                     <Route path='/checkout' element={<Checkout/>} />
                     <Route path='/*' element={<Navigate to="/" />} />
                   </Routes>
-                </BrowserRouter>  
+                </BrowserRouter>
               </AppContext.Provider>
         </div>
       </>

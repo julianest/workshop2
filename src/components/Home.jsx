@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../hooks/AppContext';
 import { Link } from 'react-router-dom';
+import {Detalle} from '../components/Detalle';
 
 const Home = () =>{
-
+  const [isOpenDetail, setIsOpenDetail] = useState(false);
+ 
 const {products}= useContext(AppContext);
 
 const discountshow = (artPrice, porcentDiscount)=>{
@@ -13,6 +15,14 @@ const discountshow = (artPrice, porcentDiscount)=>{
 const porcentDisc = 10;
 
 console.log(products)
+
+  const openDetail = (id) =>{
+    setIsOpenDetail(true);
+  }
+
+  const closeDetail = (id) =>{
+    setIsOpenDetail(false);
+  }
 
   return (
     <>
@@ -24,7 +34,8 @@ console.log(products)
                   <h5 className="card-title">{products.name}</h5>
                   <span className="card-text">{discountshow(products.price, porcentDisc)}/kg</span> /
                   <span className="card-text">{products.price}/kg</span>
-                  <Link to="#" className="btn btn-primary">Agregar</Link>
+                  <Link id={products.id} onClick={openDetail}  to="#" className="btn btn-primary">Agregar</Link>
+                  <Detalle isOpen={isOpenDetail}  id={products.id} closeDetail={closeDetail} products={products} />
                 </div>
               </div>
             ))}
